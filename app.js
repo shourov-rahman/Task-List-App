@@ -18,6 +18,9 @@ function loadEventListeners(){
   //Remove task event
   taskList.addEventListener('click',removeTask);
 
+  //Clear task event
+  clearBtn.addEventListener('click',clearTasks);
+
 }
 
 //Add task
@@ -63,5 +66,24 @@ function addTask(e){
 function removeTask(e){
   if(e.target.parentElement.classList.contains('delete-item')){
     e.target.parentElement.parentElement.remove();
+  }
+}
+
+//Clear Task function
+
+function clearTasks(){
+  // clear task by using innerHTML(not recommended)
+  // taskList.innerHTML = '';
+
+  //To remove all child nodes of a node
+  /* 
+  Process
+  --------
+  ● First, select the first child node (firstChild) and remove it using the removeChild() method. Once the first child node is removed, the next child node will automatically become the first child node. 
+  
+  ● Second, repeat the first steps until there is no remaining child node.
+  */
+  while(taskList.firstChild){
+    taskList.removeChild(taskList.firstChild);
   }
 }
